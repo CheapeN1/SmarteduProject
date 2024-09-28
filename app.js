@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const pageRoute = require('./routes/pageRoute');
-const courseRoute = require('routes/courseRoute');
+const courseRoute = require('./routes/courseRoute');
 const app = express();
 
 
@@ -14,6 +14,8 @@ app.set("view engine", "ejs");
 
 //Middlewares
 app.use(express.static("public"));
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 //Routes
 app.use('/', pageRoute);
