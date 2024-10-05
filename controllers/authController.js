@@ -34,7 +34,7 @@ exports.loginUser = async (req, res) => {
     }
     req.session.userID = user._id;
     // Şifre eşleşirse
-    res.status(200).redirect('/');
+    res.status(200).redirect('/users/dashboard');
 
   } catch (error) {
     // Hata yakalama
@@ -72,3 +72,11 @@ exports.logoutUser = (req, res) => {
     res.redirect('/');
   })
 }
+
+exports.getDashboardPage = async (req, res) => {
+  const user = await User.findOne({_id:req.session.userID})
+  res.status(200).render('dashboard', {
+    page_name: 'dashboard',
+    user
+  });
+};
