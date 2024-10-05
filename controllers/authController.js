@@ -32,9 +32,9 @@ exports.loginUser = async (req, res) => {
     if (!isMatch) {
       return res.status(401).send('Invalid email or password'); // Eğer şifre eşleşmezse hata döndür
     }
-
+    req.session.userID = user._id;
     // Şifre eşleşirse
-    res.status(200).send('YOU ARE LOGGED IN');
+    res.status(200).redirect('/');
 
   } catch (error) {
     // Hata yakalama
