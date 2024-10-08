@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { type } = require('express/lib/response');
 const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   name: {
@@ -14,6 +15,11 @@ const UserSchema = new Schema({
   password: {
       type:String,
       required: true
+  },
+  role:{
+    type:String,
+    enum:["student", "teacher", "admin"],
+    default: "student"
   }
 });
 UserSchema.pre('save', function (next){
