@@ -136,6 +136,7 @@ exports.updateCourse = async (req, res) => {
     course.name = req.body.name;
     course.description = req.body.description;
     course.category = req.body.category;
+    course.slug = req.body.slug
     course.save();
    
     res.status(200).redirect('/users/dashboard');
